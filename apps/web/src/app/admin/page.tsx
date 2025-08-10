@@ -1,48 +1,33 @@
 'use client';
-
 import { useEffect, useState } from 'react';
 
 export default function AdminPage(){
-  const [user,setUser] = useState<{name:string, email:string, role:string}|null>(null);
+  const [m,setM] = useState<any>(null);
 
   useEffect(()=>{
     const token = localStorage.getItem('accessToken');
-    const u = localStorage.getItem('user');
-    if(!token || !u){ window.location.href='/login'; return; }
-    setUser(JSON.parse(u));
+    fetch(`${process.env.NEXT_PUBLIC_API_URL||'http://localhost:4000'}/ops/metrics`,{
+      headers:{ 'Authorization': `Bearer ${token}` }
+    }).then(r=>r.json()).then(setM).catch(()=>setM(null));
   },[]);
 
-  if(!user){
-    return <main style={{padding:24,color:'#fff',background:'#0f0f14'}}>Carregando…</main>
-  }
+  const card = (title:string, value:string) => (
+    <div style={{padding:16,borderRadius:20,background:'rgba(255,255,255,.08)'}}>
+      <div style={{opacity:.7, fontSize:12}}>{title}</div>
+      <div style={{fontSize:28,fontWeight:700}}>{value}</div>
+    </div>
+  );
+
+  const fmt = (c?:number) => typeof c==='number' ? `R$ ${(c/100).toLocaleString('pt-BR',{minimumFractionDigits:2})}` : '—';
 
   return (
-    <main style={{minHeight:'100vh',background:'#0f0f14',color:'#fff'}}>
-      <header style={{display:'flex',justifyContent:'space-between',padding:16,position:'sticky',top:0,backdropFilter:'blur(12px)',background:'rgba(255,255,255,0.06)'}}>
-        <strong>Cha$hier — Admin</strong>
-        <div>
-          <span style={{opacity:.8, marginRight:12}}>{user.name} ({user.role})</span>
-          <button onClick={()=>{ localStorage.clear(); window.location.href='/login'; }} style={{padding:'8px 12px',borderRadius:12,background:'rgba(255,255,255,.15)',color:'#fff'}}>Sair</button>
-        </div>
-      </header>
-
-      <section style={{padding:24,display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))',gap:16}}>
-        <div style={{padding:16,borderRadius:20,background:'rgba(255,255,255,.08)'}}>
-          <div style={{opacity:.7, fontSize:12}}>Billed (mês)</div>
-          <div style={{fontSize:28,fontWeight:700}}>R$ 0,00</div>
-        </div>
-        <div style={{padding:16,borderRadius:20,background:'rgba(255,255,255,.08)'}}>
-          <div style={{opacity:.7, fontSize:12}}>Recebido</div>
-          <div style={{fontSize:28,fontWeight:700}}>R$ 0,00</div>
-        </div>
-        <div style={{padding:16,borderRadius:20,background:'rgba(255,255,255,.08)'}}>
-          <div style={{opacity:.7, fontSize:12}}>Overdue</div>
-          <div style={{fontSize:28,fontWeight:700}}>R$ 0,00</div>
-        </div>
-        <div style={{padding:16,borderRadius:20,background:'rgba(255,255,255,.08)'}}>
-          <div style={{opacity:.7, fontSize:12}}>Delinquência %</div>
-          <div style={{fontSize:28,fontWeight:700}}>0%</div>
-        </div>
+    <main style={{padding:24}}>
+      <h1 style={{fontSize:22, marginBottom:16}}>Dashboard</h1>
+      <section style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))',gap:16}}>
+        {card('Billed (mês)', fmt(m?.billedMonthCents))}
+        {card('Recebido', fmt(m?.receivedMonthCents))}
+        {card('Overdue', fmt(m?.overdueCents))}
+        {card('Delinquência %', typeof m?.delinquencyPct==='number' ? `${m.delinquencyPct}%` : '—')}
       </section>
     </main>
   );
