@@ -1,0 +1,4 @@
+
+> @chashier/core@0.0.1 build /Users/macbook/Documents/GitHub/cashier-cli-wizard/packages/core
+> tsc -p tsconfig.json
+

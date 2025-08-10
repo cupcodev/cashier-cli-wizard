@@ -1,0 +1,37 @@
+
+> web@ build /Users/macbook/Documents/GitHub/cashier-cli-wizard/apps/web
+> next build
+
+ [33m[1m⚠[22m[39m Invalid next.config.mjs options detected: 
+ [33m[1m⚠[22m[39m     Unrecognized key(s) in object: 'appDir' at "experimental"
+ [33m[1m⚠[22m[39m See more info here: https://nextjs.org/docs/messages/invalid-next-config
+  [1m[38;2;173;127;168m▲ Next.js 14.2.5[39m[22m
+  - Environments: .env
+
+ [37m[1m [22m[39m Creating an optimized production build ...
+ [32m[1m✓[22m[39m Compiled successfully
+[?25l [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G[?25h [37m[1m [22m[39m Linting and checking validity of types     [32m[1m✓[22m[39m Linting and checking validity of types 
+[?25l [37m[1m [22m[39m Collecting page data  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting page data  [36m..[39m[2K[1G[?25h [37m[1m [22m[39m Collecting page data     [32m[1m✓[22m[39m Collecting page data 
+[?25l [37m[1m [22m[39m Generating static pages (0/9)  [36m[    ][39m[2K[1G [37m[1m [22m[39m Generating static pages (4/9)  [36m[=   ][39m[2K[1G[?25h [32m[1m✓[22m[39m Generating static pages (9/9)
+[?25l [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[?25l [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G[?25h [37m[1m [22m[39m Collecting build traces     [32m[1m✓[22m[39m Collecting build traces 
+[2K[1G[?25h [37m[1m [22m[39m Finalizing page optimization     [32m[1m✓[22m[39m Finalizing page optimization 
+
+[4mRoute (app)[24m                              [4mSize[24m     [4mFirst Load JS[24m
+┌ ○ /                                    142 B          [37m[1m87.2 kB[22m[39m
+├ ○ /_not-found                          872 B          [37m[1m87.9 kB[22m[39m
+├ ○ /admin                               803 B          [37m[1m87.8 kB[22m[39m
+├ ○ /admin/customers                     897 B          [37m[1m95.8 kB[22m[39m
+├ ○ /admin/finance                       142 B          [37m[1m87.2 kB[22m[39m
+├ ○ /admin/invoices                      7.88 kB         [37m[1m103 kB[22m[39m
+├ ƒ /admin/invoices/[id]                 1.32 kB        [37m[1m96.2 kB[22m[39m
+└ ○ /login                               939 B            [37m[1m88 kB[22m[39m
++ First Load JS shared by all            [37m[1m87 kB[22m[39m
+  ├ chunks/753-eca9114d15664717.js       31.5 kB
+  ├ chunks/abf17911-a62a8cfeef36d88e.js  53.6 kB
+  └ other shared chunks (total)          1.88 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+[?25h
