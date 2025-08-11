@@ -1,5 +1,6 @@
-import 'reflect-metadata';
 import * as dotenv from 'dotenv';
+import * as path from 'path';
+import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import { Customer } from '../entities/customer.entity';
 import { PackageEntity } from '../entities/package.entity';
@@ -8,7 +9,7 @@ import { Invoice, InvoiceItem } from '../entities/invoice.entity';
 import { Payment } from '../entities/payment.entity';
 import { AuditLog } from '../entities/audit-log.entity';
 
-dotenv.config({ path: process.env.DOTENV_PATH || 'apps/api/.env' });
+dotenv.config({ path: process.env.DOTENV_PATH || path.join(__dirname, '../.env') });
 
 export const AppDataSource = new DataSource({
   type: 'postgres',

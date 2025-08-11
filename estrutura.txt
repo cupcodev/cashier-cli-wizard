@@ -1,0 +1,93 @@
+.
+├── .DS_Store
+├── .env
+├── .env.example
+├── .github
+│   └── workflows
+├── .gitignore
+├── .turbo
+│   ├── cache
+│   │   ├── 1e0c815dc265700b-meta.json
+│   │   ├── 1e0c815dc265700b.tar.zst
+│   │   ├── 732ee7726fb419a2-meta.json
+│   │   ├── 732ee7726fb419a2.tar.zst
+│   │   ├── a8f7df4aeff471d4-meta.json
+│   │   ├── a8f7df4aeff471d4.tar.zst
+│   │   ├── f4e5be38828ebc53-meta.json
+│   │   └── f4e5be38828ebc53.tar.zst
+│   ├── cookies
+│   │   ├── 1.cookie
+│   │   ├── 10.cookie
+│   │   ├── 11.cookie
+│   │   ├── 12.cookie
+│   │   ├── 13.cookie
+│   │   ├── 14.cookie
+│   │   ├── 15.cookie
+│   │   ├── 16.cookie
+│   │   ├── 17.cookie
+│   │   ├── 18.cookie
+│   │   ├── 19.cookie
+│   │   ├── 2.cookie
+│   │   ├── 20.cookie
+│   │   ├── 3.cookie
+│   │   ├── 4.cookie
+│   │   ├── 5.cookie
+│   │   ├── 6.cookie
+│   │   ├── 7.cookie
+│   │   ├── 8.cookie
+│   │   └── 9.cookie
+│   └── daemon
+│       └── 743b9d7d5035c3fc-turbo.log.2025-08-10
+├── README.md
+├── apps
+│   ├── .DS_Store
+│   ├── api
+│   │   ├── .env
+│   │   ├── .env.example
+│   │   ├── .turbo
+│   │   ├── estrutura.txt
+│   │   ├── nest-cli.json
+│   │   ├── package.json
+│   │   ├── src
+│   │   ├── test-db.js
+│   │   └── tsconfig.json
+│   └── web
+│       ├── .DS_Store
+│       ├── .env
+│       ├── .env.example
+│       ├── .turbo
+│       ├── next-env.d.ts
+│       ├── next.config.mjs
+│       ├── package.json
+│       ├── src
+│       └── tsconfig.json
+├── bootstrap.sh
+├── docs
+├── estrutura.txt
+├── infra
+│   ├── .DS_Store
+│   ├── db
+│   │   ├── .DS_Store
+│   │   ├── migrations
+│   │   └── seeds
+│   └── docker
+│       ├── api.Dockerfile
+│       ├── docker-compose.yml
+│       └── web.Dockerfile
+├── package.json
+├── packages
+│   ├── .DS_Store
+│   ├── core
+│   │   ├── .DS_Store
+│   │   ├── .turbo
+│   │   ├── package.json
+│   │   ├── src
+│   │   └── tsconfig.json
+│   └── ui
+│       └── src
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── tsconfig.base.json
+└── turbo.json
+
+26 directories, 65 files

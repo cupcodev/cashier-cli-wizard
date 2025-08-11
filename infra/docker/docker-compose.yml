@@ -1,18 +1,17 @@
-
 services:
   postgres:
     image: postgres:16
     environment:
-      POSTGRES_DB: chashier
       POSTGRES_USER: chashier
       POSTGRES_PASSWORD: chashier
+      POSTGRES_DB: chashier
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U chashier"]
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 5s
       timeout: 5s
-      retries: 20
+      retries: 10
 
   redis:
     image: redis:7
