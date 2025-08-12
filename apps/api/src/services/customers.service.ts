@@ -212,7 +212,7 @@ export class CustomersService {
       atualizado_por: actor || 'system',
     });
 
-    // (4) Upsert de contatos — usando DeepPartial para fixar overload de create()
+    // (4) Upsert de contatos — usa create([payload]) para evitar overload ambíguo
     if (dto.contatos) {
       const incomingIds = dto.contatos.filter(x => (x as any).id).map(x => (x as any).id!) as string[];
       if (incomingIds.length) {
@@ -232,7 +232,7 @@ export class CustomersService {
           nextContacts.push(existing);
         } else {
           const payload: DeepPartial<CustomerContact> = { ...(x as any), customer: c };
-          const created = this.contactRepo.create(payload);
+          const [created] = this.contactRepo.create([payload] as DeepPartial<CustomerContact>[]);
           nextContacts.push(created as CustomerContact);
         }
       }
@@ -259,7 +259,7 @@ export class CustomersService {
           nextAddrs.push(existing);
         } else {
           const payload: DeepPartial<CustomerAddress> = { ...(x as any), customer: c };
-          const created = this.addressRepo.create(payload);
+          const [created] = this.addressRepo.create([payload] as DeepPartial<CustomerAddress>[]);
           nextAddrs.push(created as CustomerAddress);
         }
       }
