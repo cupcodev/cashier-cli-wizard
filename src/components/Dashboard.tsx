@@ -37,10 +37,10 @@ export function Dashboard() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-          <div className="glass rounded-xl p-6 text-left">
+          <a href="/clients" className="glass rounded-xl p-6 text-left hover:bg-white/10 transition-colors">
             <h3 className="text-lg font-semibold text-primary mb-2">Clientes</h3>
             <p className="text-muted-foreground text-sm">Gerencie seus clientes e contatos</p>
-          </div>
+          </a>
           <div className="glass rounded-xl p-6 text-left">
             <h3 className="text-lg font-semibold text-primary mb-2">Faturas</h3>
             <p className="text-muted-foreground text-sm">Controle de faturas e pagamentos</p>

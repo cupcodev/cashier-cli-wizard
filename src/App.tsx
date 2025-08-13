@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { useState } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import { Dashboard } from '@/components/Dashboard'
+import { ClientsPage } from '@/pages/ClientsPage'
 
 function HomePage() {
   const { user } = useAuth()
@@ -169,6 +170,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/clients" 
+          element={
+            <ProtectedRoute>
+              <ClientsPage />
             </ProtectedRoute>
           } 
         />
