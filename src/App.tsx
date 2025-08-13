@@ -1,7 +1,16 @@
 
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useAuth } from '@/hooks/useAuth'
+import { Dashboard } from '@/components/Dashboard'
 
 function HomePage() {
+  const { user } = useAuth()
+  
+  if (user) {
+    return <Navigate to="/dashboard" />
+  }
+
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden">
       {/* Floating background elements */}
@@ -41,6 +50,30 @@ function HomePage() {
 }
 
 function LoginPage() {
+  const { signIn, user } = useAuth()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  if (user) {
+    return <Navigate to="/dashboard" />
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    setError('')
+
+    const { error: signInError } = await signIn(email, password)
+    
+    if (signInError) {
+      setError('Credenciais inválidas. Verifique seu email e senha.')
+    }
+    
+    setLoading(false)
+  }
+
   return (
     <main className="min-h-screen flex items-center justify-center p-6 relative overflow-hidden">
       {/* Floating background elements */}
@@ -57,13 +90,22 @@ function LoginPage() {
           <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto"></div>
         </div>
         
-        <form className="space-y-6">
+        {error && (
+          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-600 text-sm">
+            {error}
+          </div>
+        )}
+        
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
             <label className="text-sm font-medium text-foreground/80">Email</label>
             <input 
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 bg-white/50 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-all duration-200 backdrop-blur-sm"
               placeholder="seu@email.com"
+              required
             />
           </div>
           
@@ -71,16 +113,20 @@ function LoginPage() {
             <label className="text-sm font-medium text-foreground/80">Senha</label>
             <input 
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 bg-white/50 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-all duration-200 backdrop-blur-sm"
               placeholder="••••••••"
+              required
             />
           </div>
           
           <button 
             type="submit"
-            className="w-full py-3 bg-gradient-to-r from-primary to-secondary text-white font-medium rounded-xl hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary/50"
+            disabled={loading}
+            className="w-full py-3 bg-gradient-to-r from-primary to-secondary text-white font-medium rounded-xl hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Entrar
+            {loading ? 'Entrando...' : 'Entrar'}
           </button>
         </form>
         
@@ -94,12 +140,38 @@ function LoginPage() {
   )
 }
 
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const { user, loading } = useAuth()
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    )
+  }
+
+  if (!user) {
+    return <Navigate to="/login" />
+  }
+
+  return <>{children}</>
+}
+
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route 
+          path="/dashboard" 
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } 
+        />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
