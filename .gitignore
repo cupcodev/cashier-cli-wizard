@@ -1,7 +1,4 @@
 node_modules
 dist
 .next
-.env
-.env.*
 .DS_Store
-pnpm-lock.yaml
