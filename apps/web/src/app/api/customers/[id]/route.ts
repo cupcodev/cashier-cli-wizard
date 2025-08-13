@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const API = process.env.NEXT_PUBLIC_API_BASE_URL;
+const API = process.env.NEXT_PUBLIC_API_URL;
 
 export async function GET(_: NextRequest, { params }: { params: { id: string } }) {
   const res = await fetch(`${API}/customers/${params.id}`, {
