@@ -3,12 +3,16 @@
   "private": true,
   "packageManager": "pnpm@9.4.0",
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "test": "turbo run test",
-    "typecheck": "turbo run typecheck",
-    "build:dev": "vite build --mode development"
+    "api:build": "pnpm -C apps/api build",
+    "api:dev": "pnpm -C apps/api dev",
+    "api:start:prod": "pnpm -C apps/api start:prod",
+    "api:db:migrate": "pnpm -C apps/api db:migrate",
+    "api:db:revert": "pnpm -C apps/api db:revert",
+    "api:db:show": "pnpm -C apps/api db:show",
+
+    "web:dev": "pnpm -C apps/web dev",
+    "web:build": "pnpm -C apps/web build",
+    "web:start": "pnpm -C apps/web start"
   },
   "devDependencies": {
     "@commitlint/cli": "19.3.0",
