@@ -2,18 +2,12 @@
   "name": "api",
   "private": true,
   "scripts": {
-    "prebuild": "rm -rf dist || true",
-    "dev": "nest start --watch",
-    "build": "nest build",
-    "start": "nest start",
-    "start:dev": "nest start --watch",
-    "start:prod": "node dist/main.js",
-
-    "db:migrate": "node dist/cli/migrate.js run",
-    "db:revert": "node dist/cli/migrate.js revert",
-    "db:show": "node dist/cli/migrate.js show",
-
-    "start:docker": "node dist/main.js"
+    "build": "vite build",
+    "build:dev": "vite build --mode development",
+    "dev": "vite",
+    "lint": "turbo run lint",
+    "test": "turbo run test", 
+    "typecheck": "turbo run typecheck"
   },
   "dependencies": {
     "@nestjs/common": "10.4.5",
